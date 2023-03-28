@@ -41,4 +41,4 @@ jobs:
         with:
           github_token: ${{secrets.PUSHER}}
           branch: main
-          force: trues
+          force: true
