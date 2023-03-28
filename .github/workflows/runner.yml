@@ -8,8 +8,6 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-20.04
-    env:
-      COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.5.0
@@ -18,6 +16,9 @@ jobs:
         uses: denoland/setup-deno@v1.1.1
         with:
           deno-version: "1.8.2"
+
+      - name: Set up .env
+        run: echo "COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }}" >> .env
 
       - name: Run mod.ts
         run: deno run --lock=config/lock.json --import-map=config/import_map.json --allow-net --allow-env --allow-write --allow-read mod.ts
