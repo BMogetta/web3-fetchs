@@ -37,8 +37,8 @@ jobs:
           git diff-index --quiet HEAD || (git commit -m "ci: $timestamp" --allow-empty)
 
       - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          branch: main
-          force: true
+          #commit_message: "ci: date +'%H:%M - %B %d, %Y'"
+          push_options: "--force"
+          skip_fetch: true
