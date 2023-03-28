@@ -18,7 +18,10 @@ jobs:
           deno-version: "1.8.2"
 
       - name: Run mod.ts
-        run: deno run --allow-net --allow-env --allow-write --allow-read mod.ts
+        env:
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
+        run: deno run --allow-net --allow-env --allow-write mod.ts
 
       - name: Commit changes
         run: |
