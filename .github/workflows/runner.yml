@@ -9,6 +9,7 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.5.0
@@ -28,13 +29,15 @@ jobs:
           deno run --config=deno.jsonc --allow-net --allow-env --allow-write --allow-read mod.ts
 
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GATHERER }}
         run: |
           git config --global user.email "brunomogetta@gmail.com"
           git config --global user.name "BMogetta"
           git add data/top_crypto.json
           timestamp=$(date +"%H:%M - %B %d, %Y")
           git commit -m "ci: $timestamp"
-          git push
+          git push https://${{ github.actor }}:${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       - name: Checkout code again
         uses: actions/checkout@v2
