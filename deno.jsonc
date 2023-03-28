@@ -16,7 +16,8 @@
 				"*.css",
 				"*.html",
 				"*.yml",
-				"coverage/"
+				"coverage/",
+				".github/workflows"
 			]
 		},
 		"rules": {

@@ -8,6 +8,8 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-20.04
+    env:
+      COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.5.0
@@ -18,8 +20,6 @@ jobs:
           deno-version: "1.8.2"
 
       - name: Run mod.ts
-        env:
-          COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
         run: deno run --lock=config/lock.json --import-map=config/import_map.json --allow-net --allow-env --allow-write --allow-read mod.ts
 
       - name: Commit changes
