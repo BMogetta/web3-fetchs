@@ -1,0 +1,9 @@
+{
+	"imports": {
+		"deps": "./deps.ts",
+		"dev": "./dev_deps.ts",
+		"environment": "../src/constants/environment.ts",
+		"std/": "https://deno.land/std@0.181.0/",
+		"third/": "https://deno.land/x/"
+	}
+}

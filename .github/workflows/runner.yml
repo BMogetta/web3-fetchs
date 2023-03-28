@@ -1,0 +1,35 @@
+name: Gather Crypto Prices
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  run-script:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: "1.8.2"
+
+      - name: Run mod.ts
+        run: deno run --allow-net --allow-env --allow-write --allow-read mod.ts
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "brunomogetta@gmail.com"
+          git config --global user.name "BMogetta"
+          git add data/top_crypto.json
+          timestamp=$(date +"%H:%M - %B %d, %Y")
+          git commit -m "ci: $timestamp"
+          git push
+
+      - name: Checkout code again
+        uses: actions/checkout@v2
+        with:
+          ref: main
