@@ -22,7 +22,7 @@ jobs:
 
       - name: Run mod.ts
         run: |
-          deno run --config=deno.jsonc --allow-net --allow-env --allow-write --allow-read mod.ts
+          deno --config=deno.jsonc run --allow-net --allow-env --allow-write --allow-read mod.ts
 
       - name: Commit changes
         run: |
