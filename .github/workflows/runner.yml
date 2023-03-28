@@ -7,7 +7,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  run-script:
+  gather-information:
     runs-on: ubuntu-20.04
 
     steps:
@@ -37,7 +37,7 @@ jobs:
           git add data/top_crypto.json
           timestamp=$(date +"%H:%M - %B %d, %Y")
           git commit -m "ci: $timestamp"
-          git push https://${{ github.actor }}:${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/BMogetta/web3-fetchs
 
       - name: Checkout code again
         uses: actions/checkout@v2
