@@ -30,11 +30,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git config --global user.name "${GITHUB_ACTOR}"
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Action"
           git add data/top_crypto.json
           timestamp=$(date +"%H:%M - %B %d, %Y")
-          git commit -m "ci: $timestamp"
+          git diff-index --quiet HEAD || (git commit -m "ci: $timestamp" --allow-empty)
 
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
