@@ -1,4 +1,4 @@
-import { COINMARKETCAP_API_KEY } from "../constants/environment.ts";
+import { COINMARKETCAP_API_KEY } from "environment";
 const COINMARKETCAP_URL =
   "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
 

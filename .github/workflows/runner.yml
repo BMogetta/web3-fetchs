@@ -16,7 +16,7 @@ jobs:
       - name: Set up Deno
         uses: denoland/setup-deno@v1.1.1
         with:
-          deno-version: "1.8.2"
+          deno-version: "1.30.0"
 
       - name: Set up .env
         run: echo "COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }}" >> .env
