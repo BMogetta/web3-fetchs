@@ -37,7 +37,7 @@ jobs:
           git add data/top_crypto.json
           timestamp=$(date +"%H:%M - %B %d, %Y")
           git commit -m "ci: $timestamp"
-          git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/BMogetta/web3-fetchs
+          git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/BMogetta/web3-fetchs.git
 
       - name: Checkout code again
         uses: actions/checkout@v2
