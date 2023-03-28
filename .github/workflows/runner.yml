@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.0
 
       - name: Set up Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v1.1.1
         with:
           deno-version: "1.8.2"
 
       - name: Run mod.ts
         env:
           COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
-        run: deno run --allow-net --allow-env --allow-write --allow-read --import-map="./config/import_map.json" --lock="./config/lock.json" mod.ts
+        run: deno run --lock=config/lock.json --import-map=config/import_map.json --allow-net --allow-env --allow-write --allow-read mod.ts
 
       - name: Commit changes
         run: |
