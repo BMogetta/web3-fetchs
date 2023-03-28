@@ -30,15 +30,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Github Action"
-          git add data/top_crypto.json
-          timestamp=$(date +"%H:%M - %B %d, %Y")
-          git diff-index --quiet HEAD || (git commit -m "ci: $timestamp" --allow-empty)
+          echo "JOB_DATE=$(date +'%H:%M - %B %d, %Y')" >> $GITHUB_ENV
 
       - name: push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "ci: date +'%H:%M - %B %d, %Y'"
+          commit_message: "ci: ${{ env.JOB_DATE }}"
           push_options: "--force"
           skip_fetch: true
