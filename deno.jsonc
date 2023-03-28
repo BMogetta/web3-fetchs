@@ -2,6 +2,7 @@
 	"tasks": {
 		"cache": "deno cache --lock-write config/deps.ts config/dev_deps.ts mod.ts",
 		"run": "deno run --cached-only --allow-net --allow-env --allow-write --allow-read mod.ts",
+		"ci": "deno run --allow-net --allow-env --allow-write --allow-read mod.ts",
 		"fix": "deno fmt && deno lint",
 		"test": "deno test --coverage=./coverage --check=all --cached-only --allow-write --allow-read"
 	},
