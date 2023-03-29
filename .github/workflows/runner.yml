@@ -3,7 +3,7 @@ name: Gather Crypto Prices
 on:
   push: {}
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch: {}
 
 jobs:
